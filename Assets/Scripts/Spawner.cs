@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn(SpawnPoint spawnPoint)
     {
-        Instantiate(_prefab, spawnPoint.transform.position, Quaternion.Euler(spawnPoint.Direction));
+        Instantiate(_prefab).Initiate(spawnPoint);
     }
 
     private SpawnPoint GetSpawnPoint()
@@ -29,19 +29,11 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnRandomly()
     {
-        float elapsedTime = 0;
-
         while (_isSpawning)
         {
-            elapsedTime += Time.deltaTime;
+            Spawn(GetSpawnPoint());
 
-            if (elapsedTime >= _interval)
-            {
-                elapsedTime = 0;
-                Spawn(GetSpawnPoint());
-            }
-
-            yield return null;
+            yield return new WaitForSeconds(_interval);
         }
     }
 }

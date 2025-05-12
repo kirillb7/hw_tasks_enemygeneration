@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,8 +7,11 @@ public class Enemy : MonoBehaviour
 
     private bool _isMoving = true;
 
-    private void Start()
+    public void Initiate(SpawnPoint spawnPoint)
     {
+        transform.position = spawnPoint.transform.position;
+        transform.rotation = Quaternion.Euler(spawnPoint.Direction);
+
         StartCoroutine(Move());
     }
 
