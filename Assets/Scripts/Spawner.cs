@@ -5,7 +5,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<SpawnPoint> _spawnPoints;
-    [SerializeField] private Enemy _prefab;
     [SerializeField] private float _interval = 2;
 
     private bool _isSpawning = true;
@@ -17,7 +16,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn(SpawnPoint spawnPoint)
     {
-        Instantiate(_prefab).Initiate(spawnPoint);
+        Instantiate(spawnPoint.Prefab).Initiate(spawnPoint.transform.position, spawnPoint.Target);
     }
 
     private SpawnPoint GetSpawnPoint()
