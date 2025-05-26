@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     {
         while (_isMoving)
         {
-            transform.LookAt(_target.transform, Vector3.up);
+            transform.LookAt(_target.transform);
             transform.position += transform.forward * _speed * Time.deltaTime;
 
             yield return null;
